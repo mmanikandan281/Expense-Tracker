@@ -1,0 +1,150 @@
+{
+  "info": {
+    "name": "Personal Expense Tracker API",
+    "_postman_id": "d7b8b2b4-7f3b-4d15-8e21-1f1f0fbd7c65",
+    "description": "API collection for testing Personal Expense Tracker with Supabase authentication and CRUD operations.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth - Signup",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "apikey", "value": "{{eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndsZnVsZWNkbWVoaHlwdHRhaGtyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ5ODM1MjgsImV4cCI6MjA3MDU1OTUyOH0.2CHL7ALLJodAp-XZZUef9CHX94-9zDUHeKWAYhLMm5k}}" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"Password123\"\n}"
+        },
+        "url": {
+          "raw": "{{https://wlfulecdmehhypttahkr.supabase.co}}/auth/v1/signup",
+          "host": ["{{https://wlfulecdmehhypttahkr.supabase.co}}"],
+          "path": ["auth", "v1", "signup"]
+        }
+      }
+    },
+    {
+      "name": "Auth - Login",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "apikey", "value": "{{eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndsZnVsZWNkbWVoaHlwdHRhaGtyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ5ODM1MjgsImV4cCI6MjA3MDU1OTUyOH0.2CHL7ALLJodAp-XZZUef9CHX94-9zDUHeKWAYhLMm5k}}" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"test@example.com\",\n  \"password\": \"Password123\"\n}"
+        },
+        "url": {
+          "raw": "{{https://wlfulecdmehhypttahkr.supabase.co}}/auth/v1/token?grant_type=password",
+          "host": ["{{https://wlfulecdmehhypttahkr.supabase.co}}"],
+          "path": ["auth", "v1", "token"],
+          "query": [
+            { "key": "grant_type", "value": "password" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Get Current User",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "apikey", "value": "{{eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndsZnVsZWNkbWVoaHlwdHRhaGtyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ5ODM1MjgsImV4cCI6MjA3MDU1OTUyOH0.2CHL7ALLJodAp-XZZUef9CHX94-9zDUHeKWAYhLMm5k}}" },
+          { "key": "Authorization", "value": "Bearer {{ACCESS_TOKEN}}" }
+        ],
+        "url": {
+          "raw": "{{https://wlfulecdmehhypttahkr.supabase.co}}/auth/v1/user",
+          "host": ["{{https://wlfulecdmehhypttahkr.supabase.co}}"],
+          "path": ["auth", "v1", "user"]
+        }
+      }
+    },
+    {
+      "name": "Create Expense",
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "apikey", "value": "{{eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndsZnVsZWNkbWVoaHlwdHRhaGtyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ5ODM1MjgsImV4cCI6MjA3MDU1OTUyOH0.2CHL7ALLJodAp-XZZUef9CHX94-9zDUHeKWAYhLMm5k}}" },
+          { "key": "Authorization", "value": "Bearer {{ACCESS_TOKEN}}" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"title\": \"Grocery Shopping\",\n  \"amount\": 50.75,\n  \"category\": \"Food\",\n  \"type\": \"expense\",\n  \"date\": \"2025-08-12\"\n}"
+        },
+        "url": {
+          "raw": "{{https://wlfulecdmehhypttahkr.supabase.co}}/rest/v1/expenses",
+          "host": ["{{https://wlfulecdmehhypttahkr.supabase.co}}"],
+          "path": ["rest", "v1", "expenses"]
+        }
+      }
+    },
+    {
+      "name": "Get All Expenses",
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "apikey", "value": "{{eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndsZnVsZWNkbWVoaHlwdHRhaGtyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ5ODM1MjgsImV4cCI6MjA3MDU1OTUyOH0.2CHL7ALLJodAp-XZZUef9CHX94-9zDUHeKWAYhLMm5k}}" },
+          { "key": "Authorization", "value": "Bearer {{ACCESS_TOKEN}}" }
+        ],
+        "url": {
+          "raw": "{{https://wlfulecdmehhypttahkr.supabase.co}}/rest/v1/expenses?select=*",
+          "host": ["{{https://wlfulecdmehhypttahkr.supabase.co}}"],
+          "path": ["rest", "v1", "expenses"],
+          "query": [
+            { "key": "select", "value": "*" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Update Expense",
+      "request": {
+        "method": "PATCH",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "apikey", "value": "{{eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndsZnVsZWNkbWVoaHlwdHRhaGtyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ5ODM1MjgsImV4cCI6MjA3MDU1OTUyOH0.2CHL7ALLJodAp-XZZUef9CHX94-9zDUHeKWAYhLMm5k}}" },
+          { "key": "Authorization", "value": "Bearer {{ACCESS_TOKEN}}" }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"amount\": 60.00\n}"
+        },
+        "url": {
+          "raw": "{{https://wlfulecdmehhypttahkr.supabase.co}}/rest/v1/expenses?id=eq.1",
+          "host": ["{{https://wlfulecdmehhypttahkr.supabase.co}}"],
+          "path": ["rest", "v1", "expenses"],
+          "query": [
+            { "key": "id", "value": "eq.1" }
+          ]
+        }
+      }
+    },
+    {
+      "name": "Delete Expense",
+      "request": {
+        "method": "DELETE",
+        "header": [
+          { "key": "apikey", "value": "{{eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndsZnVsZWNkbWVoaHlwdHRhaGtyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ5ODM1MjgsImV4cCI6MjA3MDU1OTUyOH0.2CHL7ALLJodAp-XZZUef9CHX94-9zDUHeKWAYhLMm5k}}" },
+          { "key": "Authorization", "value": "Bearer {{ACCESS_TOKEN}}" }
+        ],
+        "url": {
+          "raw": "{{https://wlfulecdmehhypttahkr.supabase.co}}/rest/v1/expenses?id=eq.1",
+          "host": ["{{https://wlfulecdmehhypttahkr.supabase.co}}"],
+          "path": ["rest", "v1", "expenses"],
+          "query": [
+            { "key": "id", "value": "eq.1" }
+          ]
+        }
+      }
+    }
+  ],
+  "variable": [
+    { "key": "https://wlfulecdmehhypttahkr.supabase.co", "value": "https://https://wlfulecdmehhypttahkr.supabase.co" },
+    { "key": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndsZnVsZWNkbWVoaHlwdHRhaGtyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ5ODM1MjgsImV4cCI6MjA3MDU1OTUyOH0.2CHL7ALLJodAp-XZZUef9CHX94-9zDUHeKWAYhLMm5k", "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndsZnVsZWNkbWVoaHlwdHRhaGtyIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTQ5ODM1MjgsImV4cCI6MjA3MDU1OTUyOH0.2CHL7ALLJodAp-XZZUef9CHX94-9zDUHeKWAYhLMm5k" },
+    { "key": "ACCESS_TOKEN", "value": "" }
+  ]
+}
