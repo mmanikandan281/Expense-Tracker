@@ -133,7 +133,7 @@ export const DashboardPage: React.FC = () => {
         </div>
 
         {/* Add Expense Form */}
-        <div>
+        <div data-section="transaction-form" className="scroll-mt-8">
           <ExpenseForm onSubmit={addExpense} />
         </div>
 

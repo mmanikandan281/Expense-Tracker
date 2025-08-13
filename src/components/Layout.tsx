@@ -1,7 +1,7 @@
 import React from 'react';
 import { LogOut, User, BarChart3, Plus, Home } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -10,6 +10,7 @@ interface LayoutProps {
 export const Layout: React.FC<LayoutProps> = ({ children }) => {
   const { user, signOut } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleSignOut = async () => {
     await signOut();
@@ -18,6 +19,45 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
 
   const handleNavigation = (path: string) => {
     navigate(path);
+  };
+
+  const handleAddTransaction = () => {
+    // If we're already on the dashboard, scroll to the form
+    if (location.pathname === '/dashboard') {
+      const transactionForm = document.querySelector('[data-section="transaction-form"]');
+      if (transactionForm) {
+        transactionForm.scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'start' 
+        });
+        // Focus the amount field after scrolling
+        setTimeout(() => {
+          const amountInput = document.querySelector('input[type="number"]') as HTMLInputElement;
+          if (amountInput) {
+            amountInput.focus();
+          }
+        }, 500);
+      }
+    } else {
+      // If we're not on dashboard, navigate there first, then scroll after a delay
+      navigate('/dashboard');
+      setTimeout(() => {
+        const transactionForm = document.querySelector('[data-section="transaction-form"]');
+        if (transactionForm) {
+          transactionForm.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'start' 
+          });
+          // Focus the amount field after scrolling
+          setTimeout(() => {
+            const amountInput = document.querySelector('input[type="number"]') as HTMLInputElement;
+            if (amountInput) {
+              amountInput.focus();
+            }
+          }, 500);
+        }
+      }, 100);
+    }
   };
 
   return (
@@ -47,7 +87,7 @@ export const Layout: React.FC<LayoutProps> = ({ children }) => {
                 <span>Dashboard</span>
               </button>
               <button
-                onClick={() => handleNavigation('/dashboard')}
+                onClick={handleAddTransaction}
                 className="flex items-center space-x-2 px-3 py-2 text-gray-600 hover:text-accent-600 hover:bg-accent-50 rounded-md transition-colors duration-200"
               >
                 <Plus className="w-4 h-4" />

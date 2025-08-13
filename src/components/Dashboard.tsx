@@ -119,7 +119,6 @@ export const Dashboard: React.FC<DashboardProps> = ({ expenses }) => {
         data: sortedMonths.map(month => monthlyData[month].expenses),
         borderColor: '#EF4444',
         backgroundColor: 'rgba(239, 68, 68, 0.1)',
-        tension: 0.3,
         borderWidth: 2,
         pointBackgroundColor: '#EF4444',
         pointBorderColor: '#ffffff',

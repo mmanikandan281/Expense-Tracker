@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Plus, TrendingUp, TrendingDown, Calendar, Tag, FileText, IndianRupee } from 'lucide-react';
 
 interface ExpenseFormProps {
@@ -38,6 +38,31 @@ export const ExpenseForm: React.FC<ExpenseFormProps> = ({ onSubmit }) => {
     description: '',
   });
   const [loading, setLoading] = useState(false);
+  const amountInputRef = useRef<HTMLInputElement>(null);
+
+  // Auto-focus amount field when component comes into view
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && amountInputRef.current) {
+            // Small delay to ensure smooth scroll animation completes
+            setTimeout(() => {
+              amountInputRef.current?.focus();
+            }, 300);
+          }
+        });
+      },
+      { threshold: 0.5 }
+    );
+
+    const currentElement = document.querySelector('[data-section="transaction-form"]');
+    if (currentElement) {
+      observer.observe(currentElement);
+    }
+
+    return () => observer.disconnect();
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -68,13 +93,13 @@ export const ExpenseForm: React.FC<ExpenseFormProps> = ({ onSubmit }) => {
   return (
     <div className="card">
       {/* Header */}
-      <div className="border-b border-gray-200 px-6 py-4">
+      <div className="border-b border-gray-200 px-6 py-4 bg-gradient-to-r from-accent-50 to-blue-50">
         <div className="flex items-center space-x-3">
-          <div className="w-8 h-8 bg-accent-100 rounded-lg flex items-center justify-center">
-            <Plus className="h-4 w-4 text-accent-600" />
+          <div className="w-10 h-10 bg-accent-100 rounded-lg flex items-center justify-center shadow-sm">
+            <Plus className="h-5 w-5 text-accent-600" />
           </div>
           <div>
-            <h2 className="text-lg font-semibold text-gray-900">Add New Transaction</h2>
+            <h2 className="text-xl font-semibold text-gray-900">Add New Transaction</h2>
             <p className="text-sm text-gray-600">Track your income and expenses</p>
           </div>
         </div>
@@ -126,6 +151,7 @@ export const ExpenseForm: React.FC<ExpenseFormProps> = ({ onSubmit }) => {
                 className="form-input pl-10"
                 placeholder="0.00"
                 required
+                ref={amountInputRef}
               />
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <span className="text-gray-500 font-medium">₹</span>
