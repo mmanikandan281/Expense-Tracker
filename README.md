@@ -2,6 +2,10 @@
 
 A full-featured personal expense tracker built with React, TypeScript, and Supabase, optimized for Indian users. Track your income and expenses in Indian Rupees (₹) with beautiful charts, filtering, and real-time insights.
 
+# Output
+<img width="1920" height="1080" alt="Screenshot (131)" src="https://github.com/user-attachments/assets/77a18afe-d38c-4dfa-b219-3b06956e5a65" />
+
+
 ## Features
 
 - **User Authentication**: Secure signup and login with JWT tokens
@@ -131,6 +135,7 @@ src/
 4. Test thoroughly
 5. Submit a pull request
 
-## License
+## Developed By Manikandan M😎
+### Thank You | MkM🚀
 
-This project is open source and available under the [MIT License](LICENSE).
+
