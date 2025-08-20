@@ -209,4 +209,4 @@ src/
 
 **Manikandan M 😎**
 🚀 Thank You | MkM
- you also want me to **write and include the actual Dockerfile** (optimized for React + Vite + TypeScript) in your repo, so that the above section works perfectly?
+ 
